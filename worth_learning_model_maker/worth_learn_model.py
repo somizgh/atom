@@ -1,0 +1,2 @@
+from konlpy import *
+

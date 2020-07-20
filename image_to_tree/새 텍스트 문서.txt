@@ -1,0 +1,89 @@
+Image_to_tree[folder] # 폴더 이름, 한 이미지를 받아 트리 구조로 분해 
+  main : 임시로 함수를 돌릴 곳
+  
+  square_detection[folder]
+    find_straight : 이미지를 받아 전처리 후 직선 출력
+    stretch_straights : 직선의 양끝을 늘려서 강인하게 만든다
+    
+    
+  square_tree[folder]
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+이미지 -> canny -> maxpool -> 직선검출 ->이미지 맵투사 -> 교점 검출 -> 직선 연장 -> 직선 정리 -> 교점 검출 -> 사각형 검출 -> 사격형 트리 
+
+
+
+중복 직선 검출 
+  1. 시작과 끝점이 같다.
+    이미지맵 코드 같은 경우 뒷 직선 제거
+  2. 시작 끝 중 한점이라도 다르다 그러나 작은게 겹치는 비율 80퍼 이상
+    이미지맵 코드 같은경우
+      2.1 길이 같으면 뒷 제거
+      2.2 길이 다르면 짧은 것 제거
+
+
+
+트리에서 테이블과 중복제거
+
+내부중 하나라도 e가 아니면 true
+외곽중 한면이라도 다 e면 false
+나머지 true
+ 
+ 
+트리 만들때 여러 사각형 처리
+
+
+트리 구성 요소
+  Node(name=이름,parent=부모,position=[sx,sy,ex,ey,size,code],proportion=자신의 넓이/부모의 넓이,data=[여러 데이터])
+  
+
+no_straights_canny = canny에서 사각형 제거
+아래 노드부터 자신의 자식이있으면 자식의 구역을 제외한 곳에 no_straights_canny로 글자탐색
+	no_straights_canny에서 흰색 구역의 위치를 찾거나 제외한 전부에서 탐색
+	
+
+
+
+
+
+
+
+
+
+
+
+
+글자 탐색전 전처리 실험
+  1. 선명하게
+    kernel = np.array([[0, -1, 0],
+                   [-1, 5, -1],
+                   [0, -1, 0]])
+
+    # 커널 적용 
+    image_sharp = cv2.filter2D(image, -1, kernel)
+  2. 이미지 대비향상
+    image_enhanced = cv2.equalizeHist(image)
+    
+  3. 이미지 이진화
+    max_output_value = 255   # 출력 픽셀 강도의 최대값
+    neighborhood_size = 99
+    subtract_from_mean = 10
+    image_binarized = cv2.adaptiveThreshold(image_grey,
+                                       max_output_value,
+                                       cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                       cv2.THRESH_BINARY,
+                                       neighborhood_size,
+                                       subtract_from_mean)
+  4. canny 경계선 감지
+
