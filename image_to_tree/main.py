@@ -114,23 +114,80 @@ def image_making_sentence(image,IMG_CODE):
         plt.subplot(1, 1, i + 1), plt.title(titles[i]), plt.imshow(images[i])
         plt.xticks([]), plt.yticks([])
 
+
     plt.show()
-
-
-
-
     return 0
+
+def from_image_find_sentence(original_image, image, real_straights):
+    morph_adthresh = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,
+                                           3, 12)
+    cv2.imshow("find sen morph adthresh", morph_adthresh)
+    cv2.waitKey(0)
+
+    no_straight = draw(morph_adthresh, real_straights, "straights", (0, 0, 0), 3,show=False)
+    cv2.imshow("no straight", no_straight)
+    cv2.waitKey(0)
+
+    kernel = np.ones((10,3), np.uint8)
+    morph_close = cv2.morphologyEx(no_straight, cv2.MORPH_CLOSE,kernel)
+    cv2.imshow("morph close", morph_close)
+    cv2.waitKey(0)
+
+    approx_on = False
+    convex_on = False
+    rectangle_on = True
+    iamge, contours, hierachy = cv2.findContours(morph_close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    result = []
+    for i in range(len(contours)):
+        # 각 Contour Line을 구분하기 위해서 Color Random생성
+        b = random.randrange(1, 255)
+        g = random.randrange(1, 255)
+        r = random.randrange(1, 255)
+        cnt = contours[i]
+        area = cv2.contourArea(cnt)
+        if area > 20:
+            if approx_on:
+                epsilon = 0.005 * cv2.arcLength(cnt, True)
+                approx = cv2.approxPolyDP(cnt, epsilon, True)
+                img = cv2.drawContours(image, [approx], -1, (b, g, r), 2)
+            elif convex_on:
+                hull = cv2.convexHull(cnt)
+                img = cv2.drawContours(image, [hull], -1, (b, g, r), 2)
+
+            elif rectangle_on:
+                x, y, w, h = cv2.boundingRect(cnt)
+                """
+                copy1 = no_straight.copy()
+                copy2 = copy1[y:y + h, x:x + w]
+                cv2.imshow(copy2)
+                TF = input()
+                cv2.waitKey(0)
+                if TF is not (1 and 0):
+                    print("errrrrr")
+                cv2.imwrite("./image_to_sen_out/" + IMG_CODE + "L" + TF + ".jpg", copy2)
+                """
+                cv2.rectangle(original_image, (x, y), (x + w, y + h), (b, g, r), 2)
+                result.append([x,y,x+w,y+h,w*h])
+            else:
+                img = cv2.drawContours(image, [cnt], -1, (b, g, r), 1)
+    plt.show()
+    titles = ['Result']
+    images = [image]
+
+    for i in range(1):
+        plt.subplot(1, 1, i + 1), plt.title(titles[i]), plt.imshow(images[i])
+        plt.xticks([]), plt.yticks([])
+
+    plt.show()
+    return result
+
 
 def webpage_making_imageTree(image):
     image_height, image_width, ch = image.shape
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     original_RGB = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-    dst = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    dst2 = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    # canny
-
-
+    original_RGB2 = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     inv_gray_image = cv2.bitwise_not(gray_image)
 
     kernel = np.ones((2,2), np.uint8)
@@ -140,65 +197,25 @@ def webpage_making_imageTree(image):
     cv2.imshow("morph gradient",morph_gradient)
     cv2.waitKey(0)
 
-    ret, gradient = cv2.threshold(morph_gradient, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-    cv2.imshow("thres", gradient)
-    print(gradient)
+    ret, extreme = cv2.threshold(morph_gradient, 5, 255, cv2.THRESH_BINARY)
+    cv2.imshow("extreme", extreme)
     cv2.waitKey(0)
 
-
-    #ret, gradient = cv2.threshold(gradient,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-    #cv2.imshow("image", gradient)
-    #cv2.waitKey(0)
-    morph_adthresh = cv2.adaptiveThreshold(morph_gradient,125,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY_INV,3,12)
-    cv2.imshow("morph adthresh", morph_adthresh)
-    cv2.waitKey(0)
-
-    morph_close = cv2.morphologyEx(morph_adthresh, cv2.MORPH_CLOSE, (9, 5))
+    morph_close = cv2.morphologyEx(extreme, cv2.MORPH_CLOSE, (9, 5))
     cv2.imshow("morph close", morph_close)
     cv2.waitKey(0)
-    """
-    lines = cv2.HoughLinesP(morph_close,rho=1,theta=np.pi/180,threshold=100,minLineLength=80,maxLineGap=5)
-    print("lines",lines)
-    for i in range(len(lines)):
-        for x1, y1, x2, y2 in lines[i]:
-            cv2.line(dst, (x1, y1), (x2, y2), (0, 0, 255), 3)
-    cv2.imshow("line",dst)
-    cv2.waitKey(0)
-    contours, hierarchy = cv2.findContours(morph_adthresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-
-    for i in range(len(contours)):
-        # 각 Contour Line을 구분하기 위해서 Color Random생성
-        b = random.randrange(1, 255)
-        g = random.randrange(1, 255)
-        r = random.randrange(1, 255)
-
-        cnt = contours[i]
-        #print("cnt",cnt)
-        #print("cnt.shpae",np.shape(cnt))
-        img = cv2.drawContours(image, [cnt], -1, (b, g, r), 2)
-
-    titles = ['Result']
-    images = [image]
-
-    for i in range(1):
-        plt.subplot(1, 1, i + 1), plt.title(titles[i]), plt.imshow(images[i])
-        plt.xticks([]), plt.yticks([])
-
-    plt.show()
-
-    """
-
-    canny_image = morph_gradient
 
     # 직선을 찾는다.
     t1 = time.time()
-    straights, preprocessed_image = find_straight(morph_close, minStraightLength=20, div=3)
+    straights, preprocessed_image = find_straight(extreme, minStraightLength=20, div=1)
     t2 = time.time()
     print("{:<60}".format("find_straight end "), "time : {:>10}".format(round(t2-t1, 4)))
-
+    draw(original_RGB, straights,"straights",(255,0,0),3)
     # 변이 될 직선과 문장이 될 직선을 구별
-    real_straights, sentence = separate_sentence_from_straights(canny_image, straights, width=5)
+
+    real_straights, sentence = separate_sentence_from_straights(morph_close, straights, width=5)
+    draw(original_RGB2, real_straights,"straights",(0,0,255),2)
+    sentence = from_image_find_sentence(original_RGB, morph_gradient, real_straights)  # 이미지로부터 문자열 추출
     #t3 = time.time()
     #print("{:<60}".format("separate_sentence_from_straights end "), "time : {:>10}".format(round(t3-t2, 4)))
 
@@ -234,7 +251,7 @@ def webpage_making_imageTree(image):
 
     # 변과 점으로 부터 사각형을 찾는다.
     squares = find_squares(straights_image_map, pruned_straights, points)
-    element_map = make_element_map(dst, squares)
+    element_map = make_element_map(original_RGB, squares)
     sorted_squares = sorted(squares, key=lambda a: -a[4])
 
     draw(original_RGB, pruned_straights, "straights", (0, 0, 255), 3,show=False)
@@ -338,8 +355,9 @@ def draw(image, square_list, square_type, color, size,color_fix=False, show=True
 
 if __name__ =="__main__":
     pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    a = 2
+    a = 1
     source_image = cv2.imread(os.path.join(IMAGE_WITH_TEXT_PATH,"{0:>03}.jpg".format(a)))
+
     tree = webpage_making_imageTree(source_image)
     #tree = image_making_sentence(source_image)
     tree = resize_and_find(source_image, tree)
