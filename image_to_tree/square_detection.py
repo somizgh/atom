@@ -259,8 +259,12 @@ def pruning_straights(straights, image_map, mingap=5, sentence=False):
     sorted_vertical_straights.extend(sorted_horizontal_straights)
     return sorted_vertical_straights
 
+def flood_fill(numpy):
 
-def separate_sentence_from_straights(canny, straights, width=3, too_long =0.5):
+
+    return True
+
+def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
     imheight, imwidth = canny.shape
     thres_imheight = int(imheight*too_long)
     thres_imwidth = int(imwidth*too_long)
@@ -275,7 +279,7 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long =0.5):
                 continue
             ssx = max(0, sx-width)
             esx = min(imwidth-1, sx+width)
-            area = numpy_map[sy:ey+1,ssx:esx+1]
+            area = numpy_map[sy:ey+1, ssx:esx+1]
             mean_list = np.mean(area,axis=0)
             sub_list = [abs(mean_list[i]-mean_list[i+1]) for i in range(len(mean_list)-1)]
             if max(sub_list) >= 220:
