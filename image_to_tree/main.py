@@ -17,6 +17,11 @@ from variables import *
 import os
 CLOSING_KERNEL_WIDTH = 5
 CLOSING_KERNEL_HEIGHT = 1
+import sys
+sys.setrecursionlimit(10000)
+
+
+
 
 def image_making_sentence(image,IMG_CODE):
     image_height, image_width, ch = image.shape

@@ -24,3 +24,4 @@ def create_folder(directory):
 
 def time_format():
     return time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
+

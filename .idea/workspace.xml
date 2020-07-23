@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60496760-13e6-4599-9b59-dc80bfe65c88" name="Default Changelist" comment="atom v1">
-      <change afterPath="$PROJECT_DIR$/image_to_tree/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_to_tree/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image_to_tree/square_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/square_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_to_tree/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/useful_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/useful_function.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,48 +14,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/image_to_tree/square_detection.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="589">
-                    <caret line="279" column="34" lean-forward="true" selection-start-line="279" selection-start-column="34" selection-end-line="279" selection-end-column="34" />
-                    <folding>
-                      <element signature="e#0#18#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/image_to_tree/square_tree.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state>
-                    <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/image_to_tree/main.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/useful_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1597">
-              <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="250" />
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
               <folding>
-                <element signature="e#0#22#0" expanded="true" />
-                <element signature="e#488#3914#0" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/image_to_tree/square_detection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="353" column="30" lean-forward="true" selection-start-line="353" selection-start-column="30" selection-end-line="353" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/image_to_tree/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -98,7 +89,6 @@
         <option value="$PROJECT_DIR$/learn_sentence/testtomain.py" />
         <option value="$PROJECT_DIR$/learn_sentence/main.py" />
         <option value="$PROJECT_DIR$/predict_next_character_model/main.py" />
-        <option value="$PROJECT_DIR$/useful_function.py" />
         <option value="$PROJECT_DIR$/predict_next_character_model/file_preprocess.py" />
         <option value="$PROJECT_DIR$/dictionary/character_vocabulary.py" />
         <option value="$PROJECT_DIR$/predict_next_character_model/predict_next_character.py" />
@@ -110,16 +100,19 @@
         <option value="$PROJECT_DIR$/predict_next_character_model/predict_next_character_model_maker.py" />
         <option value="$PROJECT_DIR$/todo.txt" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/image_to_tree/main.py" />
         <option value="$PROJECT_DIR$/image_to_tree/README.md" />
+        <option value="$PROJECT_DIR$/useful_function.py" />
+        <option value="$PROJECT_DIR$/image_to_tree/test.py" />
+        <option value="$PROJECT_DIR$/image_to_tree/main.py" />
         <option value="$PROJECT_DIR$/image_to_tree/square_detection.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1909" />
-    <option name="width" value="1940" />
-    <option name="height" value="2111" />
+    <option name="x" value="1596" />
+    <option name="y" value="15" />
+    <option name="width" value="1941" />
+    <option name="height" value="2102" />
   </component>
   <component name="ProjectId" id="1c5RKpLlaL6GQyTCK9ieZxgSQH3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -128,6 +121,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -154,7 +148,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -225,27 +218,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="atom" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/learn_sentence" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/learn_sentence/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="predict_next_character" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="atom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -288,13 +260,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="atom" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/image_to_tree" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/image_to_tree/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main (2)" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.predict_next_character_model_maker" />
         <item itemvalue="Python.predict_next_character" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -331,15 +324,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
-    <editor active="true" />
+    <frame x="1064" y="10" width="1294" height="1401" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16945107" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16931638" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969603" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22745098" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35224587" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992157" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -354,10 +346,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://E:/Ai_projects_data/atom_data/test/wiki_74" />
-    <entry file="file://E:/Ai_projects_data/atom_data/ko_wiki_extraction/AE/wiki_03">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://E:/Ai_projects_data/atom_data/ko_wiki_extraction/AD/wiki_04">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2793" />
@@ -565,16 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/useful_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web_crawler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -602,10 +580,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/image_to_tree/square_detection.py.rej" />
+    <entry file="file://$PROJECT_DIR$/useful_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_to_tree/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/image_to_tree/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1597">
-          <caret line="250" lean-forward="true" selection-start-line="250" selection-end-line="250" />
+        <state relative-caret-position="855">
+          <caret line="143" column="40" selection-start-line="143" selection-start-column="40" selection-end-line="143" selection-end-column="40" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
             <element signature="e#488#3914#0" />
@@ -615,8 +611,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/image_to_tree/square_detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="279" column="34" lean-forward="true" selection-start-line="279" selection-start-column="34" selection-end-line="279" selection-end-column="34" />
+        <state relative-caret-position="219">
+          <caret line="353" column="30" lean-forward="true" selection-start-line="353" selection-start-column="30" selection-end-line="353" selection-end-column="30" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

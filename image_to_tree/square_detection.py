@@ -4,6 +4,7 @@ import cv2
 import matplotlib.pyplot as plt
 import time
 import sys
+import copy
 
 
 def canny_prepcocess(canny, division):
@@ -259,10 +260,57 @@ def pruning_straights(straights, image_map, mingap=5, sentence=False):
     sorted_vertical_straights.extend(sorted_horizontal_straights)
     return sorted_vertical_straights
 
-def flood_fill(numpy):
+def go_to_next(numpy, i, j, straight):
+    print(i,j,len(numpy),len(numpy[0]),straight)
+    sx,sy,ex,ey = straight
+    watch_list = [[i, j]]
+    numpy[j][i]=1
+    if i == 0 or i == ex-sx:
+        return 1, watch_list
+    if j == 0 or j == ey-sy:
+        return 1, watch_list
+    print(i,j)
+    if i - 1 >= 0 and numpy[j][i - 1] == 0:
+        is_bl, watched_path = go_to_next(numpy, i - 1, j, straight)
+        print("a",len(watched_path))
+        watch_list.extend(watched_path)
+        if is_bl == 1:
+            return 1, watch_list
+    if j - 1 >= 0 and numpy[j - 1][i] == 0:
+        is_bl, watched_path = go_to_next(numpy, i, j - 1, straight)
+        print("b",len(watched_path))
+        watch_list.extend(watched_path)
+        if is_bl == 1:
+            return 1, watch_list
+    if i + 1 <= ex-sx and numpy[j][i + 1] == 0:
+        is_bl, watched_path = go_to_next(numpy, i + 1, j, straight)
+        print("c",len(watched_path))
+        watch_list.extend(watched_path)
+        if is_bl == 1:
+            return 1, watch_list
+    if j + 1 <= ey-sy and numpy[j + 1][i] == 0:
+        is_bl, watched_path = go_to_next(numpy, i, j + 1, straight)
+        print("d",len(watched_path))
+        watch_list.extend(watched_path)
+        if is_bl == 1:
+            return 1, watch_list
+    return 0, watch_list
 
 
-    return True
+def is_isolated(numpy, straight):
+    for i in range(1, len(numpy[0])-1):
+        for j in range(1, len(numpy)-1):
+            now = numpy[j][i]
+            if now == 0:
+                print("go",i,j)
+                is_isolated_point, watch_list = go_to_next(numpy, i, j, straight)
+                if is_isolated_point == 0:
+                    return True
+                else:
+                    for k in range(len(watch_list)):
+                        numpy[watch_list[k][1]][watch_list[k][0]] = 2
+    return False
+
 
 def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
     imheight, imwidth = canny.shape
@@ -280,12 +328,18 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
             ssx = max(0, sx-width)
             esx = min(imwidth-1, sx+width)
             area = numpy_map[sy:ey+1, ssx:esx+1]
-            mean_list = np.mean(area,axis=0)
-            sub_list = [abs(mean_list[i]-mean_list[i+1]) for i in range(len(mean_list)-1)]
-            if max(sub_list) >= 220:
-                real_straights.append([sx,sy,ex,ey,num])
+            mean_list = np.mean(area, axis=0)
+            sub_list = [abs(mean_list[i] - mean_list[i+1]) for i in range(len(mean_list)-1)]
+            if max(sub_list) <= 220:
+                sentence.append([sx, sy, ex, ey, num])
             else:
-                sentence.append([sx,sy,ex,ey,num])
+                copied = area.copy()
+                if is_isolated(copied, [ssx, sy, esx, ey]):
+                    sentence.append([sx, sy, ex, ey, num])
+                else:
+                    real_straights.append([sx, sy, ex, ey, num])
+
+
 
         else: #수평선
             if abs(ex-sx) > thres_imwidth:
@@ -296,10 +350,13 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
             area = numpy_map[ssy:esy + 1,sx:ex + 1]
             mean_list = np.mean(area, axis=1)
             sub_list = [abs(mean_list[i] - mean_list[i + 1]) for i in range(len(mean_list) - 1)]
-            if max(sub_list) >= 220:
-                real_straights.append([sx, sy, ex, ey, num])
-            else:
+            if max(sub_list) <= 220:
                 sentence.append([sx, sy, ex, ey, num])
+            else:
+                if is_isolated(area, [sx, ssy, ex, esy]):
+                    sentence.append([sx, sy, ex, ey, num])
+                else:
+                    real_straights.append([sx, sy, ex, ey, num])
     return real_straights, sentence
 
 
