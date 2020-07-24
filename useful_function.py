@@ -25,3 +25,8 @@ def create_folder(directory):
 def time_format():
     return time.strftime('%Y-%m-%d-%H-%M', time.localtime(time.time()))
 
+def draw_2d_list(numpy):
+    for i in range(len(numpy)):
+        for j in range(len(numpy[0])):
+            print("{0:03}".format(numpy[i][j]), end =" ")
+        print("")

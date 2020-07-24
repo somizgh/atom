@@ -205,20 +205,35 @@ def webpage_making_imageTree(image):
     ret, extreme = cv2.threshold(morph_gradient, 5, 255, cv2.THRESH_BINARY)
     cv2.imshow("extreme", extreme)
     cv2.waitKey(0)
-
+    """
     morph_close = cv2.morphologyEx(extreme, cv2.MORPH_CLOSE, (9, 5))
     cv2.imshow("morph close", morph_close)
     cv2.waitKey(0)
+    """
 
     # 직선을 찾는다.
     t1 = time.time()
     straights, preprocessed_image = find_straight(extreme, minStraightLength=20, div=1)
     t2 = time.time()
     print("{:<60}".format("find_straight end "), "time : {:>10}".format(round(t2-t1, 4)))
-    draw(original_RGB, straights,"straights",(255,0,0),3)
+    #draw(original_RGB, straights,"straights",(255,0,0),3)
     # 변이 될 직선과 문장이 될 직선을 구별
 
-    real_straights, sentence = separate_sentence_from_straights(morph_close, straights, width=5)
+    # 문장과 변 이미지 맵 제작
+    points, straights_image_map = find_points(straights, image_height, image_width)  # stretch 전 이미지 맵 제작 역활
+    # points, sentence_image_map = find_points(sentence, image_height, image_width)  # stretch 전 이미지 맵 제작 역활
+
+    # 변의 길이를 늘린다.
+    stretched_straights, straights_image_map = stretch_straights(straights, straights_image_map, robust_pixel=6)
+
+    # 2번의 pruning으로 가로,세로 누가먼저하든지 상관 x
+    pruned_straights = pruning_straights(stretched_straights, straights_image_map, mingap=6)
+    points, straights_image_map = find_points(pruned_straights, image_height, image_width)
+    pruned_straights = pruning_straights(pruned_straights, straights_image_map, mingap=6)
+    points, straights_image_map = find_points(pruned_straights, image_height, image_width)
+    draw(original_RGB, pruned_straights, "straights", (255,0,0),1)
+
+    real_straights, sentence = separate_sentence_from_straights(morph_close, pruned_straights, width=5)
     draw(original_RGB2, real_straights,"straights",(0,0,255),2)
     sentence = from_image_find_sentence(original_RGB, morph_gradient, real_straights)  # 이미지로부터 문자열 추출
     #t3 = time.time()
@@ -231,18 +246,7 @@ def webpage_making_imageTree(image):
     #draw(dst, real_straights, "straights", (255, 0, 0), 2, show=False)
     #draw(dst, sentence, "straights", (0, 255, 0), 2, show=True)
 
-    # 문장과 변 이미지 맵 제작
-    points, straights_image_map = find_points(real_straights, image_height, image_width)  # stretch 전 이미지 맵 제작 역활
-    #points, sentence_image_map = find_points(sentence, image_height, image_width)  # stretch 전 이미지 맵 제작 역활
 
-    # 변의 길이를 늘린다.
-    stretched_straights, straights_image_map = stretch_straights(real_straights, straights_image_map, robust_pixel=6)
-
-    # 2번의 pruning으로 가로,세로 누가먼저하든지 상관 x
-    pruned_straights = pruning_straights(stretched_straights, straights_image_map, mingap=6)
-    points, straights_image_map = find_points(pruned_straights, image_height, image_width)
-    pruned_straights = pruning_straights(pruned_straights, straights_image_map, mingap=6)
-    points, straights_image_map = find_points(pruned_straights, image_height, image_width)
 
     #pruned_sentence = pruning_straights(sentence, sentence_image_map, mingap=8, sentence=True)
     #_, sentence_image_map = find_points(pruned_sentence, image_height, image_width)

@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import time
 import sys
 import copy
+from useful_function import *
 
 
 def canny_prepcocess(canny, division):
@@ -260,8 +261,9 @@ def pruning_straights(straights, image_map, mingap=5, sentence=False):
     sorted_vertical_straights.extend(sorted_horizontal_straights)
     return sorted_vertical_straights
 
-def go_to_next(numpy, i, j, straight):
-    print(i,j,len(numpy),len(numpy[0]),straight)
+def go_to_next(numpy, i, j, straight,token):
+    if token==1:
+        print(i,j,len(numpy),len(numpy[0]),straight)
     sx,sy,ex,ey = straight
     watch_list = [[i, j]]
     numpy[j][i]=1
@@ -269,50 +271,71 @@ def go_to_next(numpy, i, j, straight):
         return 1, watch_list
     if j == 0 or j == ey-sy:
         return 1, watch_list
-    print(i,j)
-    if i - 1 >= 0 and numpy[j][i - 1] == 0:
-        is_bl, watched_path = go_to_next(numpy, i - 1, j, straight)
-        print("a",len(watched_path))
-        watch_list.extend(watched_path)
-        if is_bl == 1:
+    #print(i,j)
+    if i - 1 >= 0:
+        if numpy[j][i - 1] == 0:
+            is_bl, watched_path = go_to_next(numpy, i - 1, j, straight,token)
+            watch_list.extend(watched_path)
+            if is_bl == 1:
+                return 1, watch_list
+        elif numpy[j][i-1] == 2:
             return 1, watch_list
-    if j - 1 >= 0 and numpy[j - 1][i] == 0:
-        is_bl, watched_path = go_to_next(numpy, i, j - 1, straight)
-        print("b",len(watched_path))
-        watch_list.extend(watched_path)
-        if is_bl == 1:
+    if j - 1 >= 0:
+        if numpy[j - 1][i] == 0:
+            is_bl, watched_path = go_to_next(numpy, i, j - 1, straight,token)
+            #print("b",len(watched_path))
+            watch_list.extend(watched_path)
+            if is_bl == 1:
+                return 1, watch_list
+        elif numpy[j - 1][i] == 2:
             return 1, watch_list
-    if i + 1 <= ex-sx and numpy[j][i + 1] == 0:
-        is_bl, watched_path = go_to_next(numpy, i + 1, j, straight)
-        print("c",len(watched_path))
-        watch_list.extend(watched_path)
-        if is_bl == 1:
+    if i + 1 <= ex-sx:
+        if numpy[j][i + 1] == 0:
+            is_bl, watched_path = go_to_next(numpy, i + 1, j, straight,token)
+            #print("c",len(watched_path))
+            watch_list.extend(watched_path)
+            if is_bl == 1:
+                return 1, watch_list
+        elif numpy[j][i + 1] == 2:
             return 1, watch_list
-    if j + 1 <= ey-sy and numpy[j + 1][i] == 0:
-        is_bl, watched_path = go_to_next(numpy, i, j + 1, straight)
-        print("d",len(watched_path))
-        watch_list.extend(watched_path)
-        if is_bl == 1:
+    if j + 1 <= ey-sy:
+        if numpy[j + 1][i] == 0:
+            is_bl, watched_path = go_to_next(numpy, i, j + 1, straight,token)
+            #print("d",len(watched_path))
+            watch_list.extend(watched_path)
+            if is_bl == 1:
+                return 1, watch_list
+        elif numpy[j + 1][i] == 2:
             return 1, watch_list
     return 0, watch_list
 
 
-def is_isolated(numpy, straight):
+def is_isolated(numpy, straight,token):
+    if token==1:
+        draw_2d_list(numpy)
     for i in range(1, len(numpy[0])-1):
         for j in range(1, len(numpy)-1):
             now = numpy[j][i]
             if now == 0:
-                print("go",i,j)
-                is_isolated_point, watch_list = go_to_next(numpy, i, j, straight)
+                if token ==1:
+                    print("go",i,j)
+                is_isolated_point, watch_list = go_to_next(numpy, i, j, straight,token)
                 if is_isolated_point == 0:
+                    print("True")
+                    #k=input()
+                    del numpy
                     return True
+
                 else:
                     for k in range(len(watch_list)):
                         numpy[watch_list[k][1]][watch_list[k][0]] = 2
+    print("False")
+    #k=input()
+    del numpy
     return False
 
 
-def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
+def separate_sentence_from_straights(canny, straights, width=6, too_long=0.5):
     imheight, imwidth = canny.shape
     thres_imheight = int(imheight*too_long)
     thres_imwidth = int(imwidth*too_long)
@@ -320,7 +343,13 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
     sentence = []
     numpy_map = np.array(canny) # 흰색은 255
     for i in range(len(straights)):
+        print(straights[i])
+        token = 0
         sx,sy,ex,ey,num = straights[i]
+        if sx == 387:
+            token = 1
+        if token == 1:
+            print("token 1")
         if sx == ex: # 수직선
             if abs(ey-sy) > thres_imheight:
                 real_straights.append([sx, sy, ex, ey, num])
@@ -330,18 +359,20 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
             area = numpy_map[sy:ey+1, ssx:esx+1]
             mean_list = np.mean(area, axis=0)
             sub_list = [abs(mean_list[i] - mean_list[i+1]) for i in range(len(mean_list)-1)]
+
+            if 914 < sx < 933 and 652 < sy < 677:
+                token=1
             if max(sub_list) <= 220:
                 sentence.append([sx, sy, ex, ey, num])
             else:
                 copied = area.copy()
-                if is_isolated(copied, [ssx, sy, esx, ey]):
+                if is_isolated(copied, [ssx, sy, esx, ey],token):
                     sentence.append([sx, sy, ex, ey, num])
                 else:
                     real_straights.append([sx, sy, ex, ey, num])
-
-
-
         else: #수평선
+            if token ==1:
+                print("hori")
             if abs(ex-sx) > thres_imwidth:
                 real_straights.append([sx, sy, ex, ey, num])
                 continue
@@ -350,10 +381,13 @@ def separate_sentence_from_straights(canny, straights, width=3, too_long=0.5):
             area = numpy_map[ssy:esy + 1,sx:ex + 1]
             mean_list = np.mean(area, axis=1)
             sub_list = [abs(mean_list[i] - mean_list[i + 1]) for i in range(len(mean_list) - 1)]
+            if 914 < sx < 933 and 652 < sy < 677:
+                token=1
             if max(sub_list) <= 220:
                 sentence.append([sx, sy, ex, ey, num])
             else:
-                if is_isolated(area, [sx, ssy, ex, esy]):
+                copied = area.copy()
+                if is_isolated(copied, [sx, ssy, ex, esy],token):
                     sentence.append([sx, sy, ex, ey, num])
                 else:
                     real_straights.append([sx, sy, ex, ey, num])

@@ -1,5 +1,6 @@
-import numpy as np
+def recur(n):
+    print(n)
+    return recur(n+1)
 
-a = [1,2,3]
-a.extend([1])
-print(a)
+recur(1)
+
