@@ -6,6 +6,7 @@ import time
 import sys
 import copy
 from useful_function import *
+sys.setrecursionlimit(10000)
 
 
 def canny_prepcocess(canny, division):
@@ -47,8 +48,6 @@ def find_straight(image, minStraightLength, div=3):
         preprocessed_image = canny_prepcocess(image, div)
         pooled_image_height, pooled_image_width = preprocessed_image.shape
     straights = []
-
-    print(image)
     x=0
     while x < pooled_image_width:
         serial_num = 0
@@ -322,7 +321,7 @@ def is_isolated(numpy, straight,token):
                 is_isolated_point, watch_list = go_to_next(numpy, i, j, straight,token)
                 if is_isolated_point == 0:
                     print("True")
-                    #k=input()
+                    draw_2d_list(numpy)
                     del numpy
                     return True
 
@@ -330,7 +329,6 @@ def is_isolated(numpy, straight,token):
                     for k in range(len(watch_list)):
                         numpy[watch_list[k][1]][watch_list[k][0]] = 2
     print("False")
-    #k=input()
     del numpy
     return False
 
@@ -339,18 +337,14 @@ def separate_sentence_from_straights(canny, straights, width=6, too_long=0.5):
     imheight, imwidth = canny.shape
     thres_imheight = int(imheight*too_long)
     thres_imwidth = int(imwidth*too_long)
-    real_straights= []
+    real_straights = []
     sentence = []
     numpy_map = np.array(canny) # 흰색은 255
     for i in range(len(straights)):
-        print(straights[i])
-        token = 0
         sx,sy,ex,ey,num = straights[i]
-        if sx == 387:
-            token = 1
-        if token == 1:
-            print("token 1")
+        print("\n\nstraights",sx,sy,ex,ey)
         if sx == ex: # 수직선
+            print("it's vertical")
             if abs(ey-sy) > thres_imheight:
                 real_straights.append([sx, sy, ex, ey, num])
                 continue
@@ -359,35 +353,33 @@ def separate_sentence_from_straights(canny, straights, width=6, too_long=0.5):
             area = numpy_map[sy:ey+1, ssx:esx+1]
             mean_list = np.mean(area, axis=0)
             sub_list = [abs(mean_list[i] - mean_list[i+1]) for i in range(len(mean_list)-1)]
-
-            if 914 < sx < 933 and 652 < sy < 677:
-                token=1
             if max(sub_list) <= 220:
+                print("can't exceed sub list thres", 220, "  ", max(sub_list))
                 sentence.append([sx, sy, ex, ey, num])
             else:
                 copied = area.copy()
-                if is_isolated(copied, [ssx, sy, esx, ey],token):
+                if is_isolated(copied, [ssx, sy, esx, ey],0):
+                    print([sx, sy, ex, ey, num])
                     sentence.append([sx, sy, ex, ey, num])
                 else:
                     real_straights.append([sx, sy, ex, ey, num])
-        else: #수평선
-            if token ==1:
-                print("hori")
+        else: # 수평선
+            print("it's horizontal")
             if abs(ex-sx) > thres_imwidth:
                 real_straights.append([sx, sy, ex, ey, num])
                 continue
             ssy = max(0, sy - width)
             esy = min(imheight - 1, sy + width)
-            area = numpy_map[ssy:esy + 1,sx:ex + 1]
+            area = numpy_map[ssy:esy + 1, sx:ex + 1]
             mean_list = np.mean(area, axis=1)
             sub_list = [abs(mean_list[i] - mean_list[i + 1]) for i in range(len(mean_list) - 1)]
-            if 914 < sx < 933 and 652 < sy < 677:
-                token=1
             if max(sub_list) <= 220:
+                print("can't exceed sub list thres",220,"  ",max(sub_list))
                 sentence.append([sx, sy, ex, ey, num])
             else:
                 copied = area.copy()
-                if is_isolated(copied, [sx, ssy, ex, esy],token):
+                if is_isolated(copied, [sx, ssy, ex, esy],0):
+                    print([sx, sy, ex, ey, num])
                     sentence.append([sx, sy, ex, ey, num])
                 else:
                     real_straights.append([sx, sy, ex, ey, num])

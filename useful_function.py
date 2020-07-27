@@ -30,3 +30,6 @@ def draw_2d_list(numpy):
         for j in range(len(numpy[0])):
             print("{0:03}".format(numpy[i][j]), end =" ")
         print("")
+
+
+

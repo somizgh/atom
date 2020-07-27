@@ -233,8 +233,9 @@ def webpage_making_imageTree(image):
     points, straights_image_map = find_points(pruned_straights, image_height, image_width)
     draw(original_RGB, pruned_straights, "straights", (255,0,0),1)
 
-    real_straights, sentence = separate_sentence_from_straights(morph_close, pruned_straights, width=5)
-    draw(original_RGB2, real_straights,"straights",(0,0,255),2)
+    real_straights, sentence = separate_sentence_from_straights(extreme, pruned_straights, width=5)
+    draw(original_RGB2, sentence, "straights", (0,255,0),1,show=False)
+    draw(extreme, real_straights,"straights",(0,0,255),1)
     sentence = from_image_find_sentence(original_RGB, morph_gradient, real_straights)  # 이미지로부터 문자열 추출
     #t3 = time.time()
     #print("{:<60}".format("separate_sentence_from_straights end "), "time : {:>10}".format(round(t3-t2, 4)))
@@ -306,11 +307,9 @@ def resize_and_find(image, root):
 
 
 def draw(image, square_list, square_type, color, size,color_fix=False, show=True, gray=False, div=1):
-    print(image.shape,"##########################")
     if square_type is'straights':
 
         for i in range(len(square_list)):
-            print("i",i,square_list[i])
             cv2.line(image, (square_list[i][0],square_list[i][1]), (square_list[i][2],square_list[i][3]), color, size)
     elif square_type is 'points':
         for i in range(len(square_list)):
