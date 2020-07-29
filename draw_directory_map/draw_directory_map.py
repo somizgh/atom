@@ -121,6 +121,9 @@ class File:
     def return_long_layer(self):
         return self.len, self.layer
 
+    def return_pos(self):
+        return self.sx
+
 
 def sort_tree_to_top():
     return 0
@@ -156,15 +159,13 @@ def go_to_dir(path, file_list, root_len, root_layer):
         return file_list, 1, child_max_layer
     return file_list, long, child_max_layer
 
-def draw(tree_map, long, layer):
-    print(long,layer)
-
-    white_board_size = (long * CELL_STANDARD_HEIGHT + WB_UPPER_PADDING*2,
-                        layer * (CELL_WIDTH+WB_WIDTH_BETWEEN_CELLS) + WB_LEFT_PADDING*2, 3)
-    white_board = np.zeros(white_board_size, np.uint8)
-    white_board.fill(255)
-    sy_ey_list = [[0, 0] for _ in range(layer)]  # psy, pey, long_count
+def draw(tree_map, long, total_layer):
+    sy_ey_list = [[0, 0] for _ in range(total_layer)]  # psy, pey, long_count
     if DRAW_DENSE_MAP:
+        white_board_size = (long * CELL_STANDARD_HEIGHT + WB_UPPER_PADDING * 2,
+                            total_layer * (CELL_WIDTH + WB_WIDTH_BETWEEN_CELLS) + WB_LEFT_PADDING * 2, 3)
+        white_board = np.zeros(white_board_size, np.uint8)
+        white_board.fill(255)
         for i in range(len(tree_map)):
             c = tree_map[i]
             long, layer = c.return_long_layer()
@@ -185,6 +186,13 @@ def draw(tree_map, long, layer):
             psy, pey = sy_ey_list[layer]
             psy, pey = c.set_position(psy, pey)
             sy_ey_list[layer] = [psy, pey]
+        max_height = max([sy_ey[1] for sy_ey in sy_ey_list])
+        white_board_size = (max_height + WB_UPPER_PADDING * 2,
+                            total_layer * (CELL_WIDTH + WB_WIDTH_BETWEEN_CELLS) + WB_LEFT_PADDING * 2, 3)
+        white_board = np.zeros(white_board_size, np.uint8)
+        white_board.fill(255)
+        for i in range(len(tree_map)):
+            c = tree_map[i]
             c.draw(white_board)
     plt.imshow(white_board)
     plt.show()
