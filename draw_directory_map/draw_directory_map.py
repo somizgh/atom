@@ -53,61 +53,62 @@ class File:
         if self.type is "dir":
             self.ey = self.sy + CELL_STANDARD_HEIGHT
         elif self.type is "file_pack":
-            self.ey = self.sy + max(CELL_STANDARD_HEIGHT, CELL_TITLE_HEIGHT +
-                                    len(self.file_names) * (CELL_BODY_FONT_SIZE + CELL_HEIGHT_BETWEEN_TEXTS))
+            self.ey = self.sy + max(CELL_STANDARD_HEIGHT,
+                                    CELL_TITLE_HEIGHT + len(self.file_names) * (CELL_BODY_TEXT_INTERVAL))
         self.tsy = self.sy
         self.tey = self.tsy + CELL_TITLE_HEIGHT
-        self.bsy = self.tey + DDMC.CELL_BODY_UPPER_PADDING
+        self.bsy = self.tey
         self.bey = self.bsy
         return self.sy, self.ey
 
 
     def draw(self, white_board):
-        print("name", self.name)
-        print("my",self.layer, self.len)
-        print("parent", self.parent)
-        print(" ")
         # 직선 먼저 연결
         if self.parent[1] == self.len:  # 부모 파일과 같은 len
-            cv2.line(white_board, (self.tsx-DDMC.CELL_BETWEEN_WIDTH_PADDING, int((self.tsy + self.tey)/2)),
-                     (self.tsx, int((self.tsy + self.tey)/2)), (0, 0, 0), 2)
+            cv2.line(white_board, (self.tsx+CELL_LINE_PADDING_X, self.tsy+CELL_LINE_PADDING_Y),
+                     (self.tsx + CELL_LINE_PADDING_X - WB_WIDTH_BETWEEN_CELLS, self.tsy+CELL_LINE_PADDING_Y),
+                     (0, 0, 0), 2)
         else:  # 부모 파일 아래로 떨어져있다.
-            cv2.line(white_board, (self.tsx - int(DDMC.CELL_BETWEEN_WIDTH_PADDING/2), int((self.tsy + self.tey) / 2)),
-                     (self.tsx, int((self.tsy + self.tey) / 2)), (0, 0, 0), 2)
-            cv2.line(white_board, (self.tsx - int(DDMC.CELL_BETWEEN_WIDTH_PADDING/2), self.psy+int(DDMC.CELL_TITLE_HEIGHT/2)),
-                     (self.tsx - int(DDMC.CELL_BETWEEN_WIDTH_PADDING/2), int((self.tsy + self.tey) / 2)), (0, 0, 0), 2)
+            curve_x_point = self.tsx + CELL_LINE_PADDING_X - int(WB_WIDTH_BETWEEN_CELLS/2)
+            cv2.line(white_board, (self.tsx + CELL_LINE_PADDING_X, self.tsy + CELL_LINE_PADDING_Y),
+                     (curve_x_point, self.tsy + CELL_LINE_PADDING_Y),
+                     (0, 0, 0), 2)
 
+            cv2.line(white_board, (curve_x_point, self.tsy + CELL_LINE_PADDING_Y - (self.sy - self.psy)),
+                     (curve_x_point, self.tsy + CELL_LINE_PADDING_Y),
+                     (0, 0, 0), 2)
         if self.type is "dir":
-            color = DDMC.DIR_COLOR
+            color = DIR_COLOR
             cv2.rectangle(white_board, (self.sx, self.sy), (self.ex, self.ey), color, -1)
             color = (144, 144, 144)
             cv2.rectangle(white_board, (self.tsx, self.tsy), (self.tex, self.tey), color, -1)
             cv2.putText(white_board, str(self.name),
-                        (self.tsx+DDMC.CELL_TITLE_LEFT_PADDING, self.tsy+DDMC.CELL_TITLE_UPPER_PADDING),
-                        DDMC.CELL_TITLE_FONT, DDMC.CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
+                        (self.tsx+CELL_TITLE_TEXT_LEFT_PADDING, self.tsy+CELL_TITLE_TEXT_UPPER_PADDING),
+                        CELL_TITLE_FONT, CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
 
         elif self.type is "file":
-            color = DDMC.FILE_COLOR
+            color = FILE_COLOR
             cv2.rectangle(white_board, (self.sx, self.sy), (self.ex, self.ey), color, -1)
             color = (144, 144, 144)
             cv2.rectangle(white_board, (self.tsx, self.tsy), (self.tex, self.tey), color, -1)
             cv2.putText(white_board, str(self.name),
-                        (self.tsx + DDMC.CELL_TITLE_LEFT_PADDING, self.tsy + DDMC.CELL_TITLE_UPPER_PADDING),
-                        DDMC.CELL_TITLE_FONT, DDMC.CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
+                        (self.tsx + CELL_TITLE_TEXT_LEFT_PADDING, self.tsy + CELL_TITLE_TEXT_UPPER_PADDING),
+                        CELL_TITLE_FONT, CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
 
         elif self.type is "file_pack":
-            color = DDMC.FILE_PACK_COLOR
+            color = FILE_PACK_COLOR
             cv2.rectangle(white_board, (self.sx, self.sy), (self.ex, self.ey), color, -1)
             color = (144, 144, 144)
             cv2.rectangle(white_board, (self.tsx, self.tsy), (self.tex, self.tey), color, -1)
-            cv2.putText(white_board, str(self.name),
-                        (self.tsx + DDMC.CELL_TITLE_LEFT_PADDING, self.tsy + DDMC.CELL_TITLE_UPPER_PADDING),
-                        DDMC.CELL_TITLE_FONT, DDMC.CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
+            cv2.putText(white_board, "source code",
+                        (self.tsx + CELL_TITLE_TEXT_LEFT_PADDING, self.tsy + CELL_TITLE_TEXT_UPPER_PADDING),
+                        CELL_TITLE_FONT, CELL_TITLE_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
             for i in range(len(self.file_names)):
-                cv2.putText(white_board, "* " + self.file_names[i], (self.bsx, self.bsy+i*DDMC.CELL_BODY_INTERVAL), DDMC.CELL_BODY_FONT,
-                            DDMC.CELL_BODY_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
-                cv2.line(white_board, (self.bsx, self.bsy+i*DDMC.CELL_BODY_INTERVAL+DDMC.CELL_BODY_UNDERLINE_PADDING),
-                         (self.bex, self.bsy+i*DDMC.CELL_BODY_INTERVAL+DDMC.CELL_BODY_UNDERLINE_PADDING), (0, 0, 0), 1)
+                cv2.putText(white_board, "* " + self.file_names[i],
+                            (self.bsx+CELL_BODY_LEFT_PADDING, self.bsy+CELL_BODY_UPPER_PADDING+i*CELL_BODY_TEXT_INTERVAL), CELL_BODY_FONT,
+                            CELL_BODY_FONT_SIZE, (0, 0, 0), 1, cv2.LINE_AA)
+                cv2.line(white_board, (self.bsx+CELL_BODY_LEFT_PADDING, self.bsy+CELL_BODY_UPPER_PADDING+i*CELL_BODY_TEXT_INTERVAL + CELL_BODY_UNDERLINE_PADDING),
+                         (self.bex-CELL_BODY_LEFT_PADDING,self.bsy+CELL_BODY_UPPER_PADDING+i*CELL_BODY_TEXT_INTERVAL + CELL_BODY_UNDERLINE_PADDING), (0, 0, 0), 1)
 
 
 
@@ -120,6 +121,9 @@ class File:
     def return_long_layer(self):
         return self.len, self.layer
 
+    def return_pos(self):
+        return self.sx
+
 
 def sort_tree_to_top():
     return 0
@@ -129,7 +133,7 @@ def go_to_dir(path, file_list, root_len, root_layer):
     long = 0
     child_max_layer = root_layer
     for file in os.listdir(path):
-        if os.path.isdir(os.path.join(path, file)) and file not in DDMC.DIRECTORY_IGNORED:
+        if os.path.isdir(os.path.join(path, file)) and file not in DIRECTORY_IGNORED:
             print(file)
             dir = File(os.path.join(path, file), "dir", root_layer+1, root_len + long, [root_layer, root_len])
             file_list.append(dir)
@@ -140,7 +144,7 @@ def go_to_dir(path, file_list, root_len, root_layer):
     make_pack = False
     for file in os.listdir(path):
         if os.path.isfile(os.path.join(path, file)):
-            if DDMC.DISPLAY_ALL_SOURCE_CODE:
+            if DISPLAY_ALL_SOURCE_CODE:
                 py = File(os.path.join(path, file), "file", root_layer+1, root_len + long, [root_layer, root_len])
                 file_list.append(py)
                 long = long + 1
@@ -155,15 +159,13 @@ def go_to_dir(path, file_list, root_len, root_layer):
         return file_list, 1, child_max_layer
     return file_list, long, child_max_layer
 
-def draw(tree_map, long, layer):
-    print(long,layer)
-
-    white_board_size = (long * DDMC.CELL_POSITION_HEIGHT_COEFFICIENT + DDMC.UPPER_PADDING*2,
-                        layer*DDMC.CELL_POSITION_WIDTH_COEFFICIENT + DDMC.LEFT_PADDING*2, 3)
-    white_board = np.zeros(white_board_size, np.uint8)
-    white_board.fill(255)
-    sy_ey_list = [[0, 0] for _ in range(layer)]  # psy, pey, long_count
-    if DDMC.DRAW_DENSE_MAP:
+def draw(tree_map, long, total_layer):
+    sy_ey_list = [[0, 0] for _ in range(total_layer)]  # psy, pey, long_count
+    if DRAW_DENSE_MAP:
+        white_board_size = (long * CELL_STANDARD_HEIGHT + WB_UPPER_PADDING * 2,
+                            total_layer * (CELL_WIDTH + WB_WIDTH_BETWEEN_CELLS) + WB_LEFT_PADDING * 2, 3)
+        white_board = np.zeros(white_board_size, np.uint8)
+        white_board.fill(255)
         for i in range(len(tree_map)):
             c = tree_map[i]
             long, layer = c.return_long_layer()
@@ -184,6 +186,13 @@ def draw(tree_map, long, layer):
             psy, pey = sy_ey_list[layer]
             psy, pey = c.set_position(psy, pey)
             sy_ey_list[layer] = [psy, pey]
+        max_height = max([sy_ey[1] for sy_ey in sy_ey_list])
+        white_board_size = (max_height + WB_UPPER_PADDING * 2,
+                            total_layer * (CELL_WIDTH + WB_WIDTH_BETWEEN_CELLS) + WB_LEFT_PADDING * 2, 3)
+        white_board = np.zeros(white_board_size, np.uint8)
+        white_board.fill(255)
+        for i in range(len(tree_map)):
+            c = tree_map[i]
             c.draw(white_board)
     plt.imshow(white_board)
     plt.show()
