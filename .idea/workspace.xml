@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60496760-13e6-4599-9b59-dc80bfe65c88" name="Default Changelist" comment="atom v1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draw_directory_map/draw_directory_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/draw_directory_map/draw_directory_map.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/draw_directory_map/draw_directory_map.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1489">
-              <caret line="161" column="30" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
+            <state relative-caret-position="378">
+              <caret line="163" column="22" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -102,9 +101,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1909" />
-    <option name="width" value="1940" />
-    <option name="height" value="2111" />
+    <option name="x" value="1908" />
+    <option name="width" value="1941" />
+    <option name="height" value="2112" />
   </component>
   <component name="ProjectId" id="1c5RKpLlaL6GQyTCK9ieZxgSQH3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -322,14 +321,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
+    <frame x="1272" y="0" width="1294" height="1408" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26491648" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13036565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969603" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3035294" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21434139" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39890283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -363,6 +362,9 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://E:/Ai_projects_data/atom_data/PNCM_checkpoints/2020-07-19-19-47/history.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$USER_HOME$/.conda/envs/tensor3.6cuda/Lib/site-packages/tensorflow_core/python/keras/saving/save.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="460">
@@ -605,17 +607,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.conda/envs/tensor3.6cuda/Lib/site-packages/matplotlib/image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="693" selection-start-line="693" selection-end-line="693" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/draw_directory_map/draw_directory_map.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1489">
-          <caret line="161" column="30" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
+        <state relative-caret-position="378">
+          <caret line="163" column="22" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
         </state>
       </provider>
     </entry>
