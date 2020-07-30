@@ -1,6 +1,5 @@
-def recur(n):
-    print(n)
-    return recur(n+1)
 
-recur(1)
 
+
+a=3
+print("{:>3}".format("d"))
