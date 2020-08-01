@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from variables import *
 from useful_function import *
-import predict_next_character_model_variables as PNCMV
+import predict_next_character_model.predict_next_character_model_variables as PNCMV
 import json
 
 

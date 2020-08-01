@@ -1,0 +1,42 @@
+import variables as VARIABLES
+from os.path import join
+
+FONT_SIZE = 16
+
+IMAGE_WIDTH = int(FONT_SIZE*1.2)
+IMAGE_HEIGHT = int(FONT_SIZE*1.2)
+
+DCM_DIR_NAME = "DCM"
+DCM_DIR_PATH = join(VARIABLES.E_DATA_PATH, DCM_DIR_NAME)
+
+FONT_DIR_NAME = "hangul_fonts"
+FONT_DIR_PATH = join(DCM_DIR_PATH, FONT_DIR_NAME)
+
+CHARACTER_IMAGES_DIR_NAME = "character_images"
+CHARACTER_IMAGES_DIR_PATH = join(DCM_DIR_PATH, CHARACTER_IMAGES_DIR_NAME)
+
+CHARACTER_NUMPY_DIR_NAME = "DCM_input_data"
+CHARACTER_NUMPY_DIR_PATH = join(DCM_DIR_PATH, CHARACTER_NUMPY_DIR_NAME)
+
+CHECKPOINTS_DIR_NAME = "DCM_checkpoints"
+CHECKPOINTS_DIR_PATH = join(DCM_DIR_PATH, CHECKPOINTS_DIR_NAME)
+
+INPUT_DATA_X_NAME = "dataX"
+INPUT_DATA_Y_NAME = "dataY"
+INPUT_DATA_COUNTER_FORMAT = "_{0:>04}.npy"
+
+
+IMAGES_PER_FILE = 1000
+
+EPOCH = 2000
+
+TRAIN_SPLIT = 0.7
+CHARACTER_DATA_PATH = "E:/Ai_projects_data/atom_data/character_data_HES3"
+BATCH_SIZE = 1
+
+#  겹치는 문자들
+ZERO_YOUNG_IEUNG = [21, 42, 68, 80]  # 동그라미들.  이응, 대문자 O, 소문자 o, 숫자 0
+BIG_SAME_SMALL = [56, 69, 72, 75, 76, 77, 79]  # 대소문자 같은 소문자들 -26을 한다. C,P,S,V,W,X,Z
+l_SAME = [9, 36, 65]  # 세로 막대기. 모음 ㅣ,대문자 I, 소문자 l,
+
+

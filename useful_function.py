@@ -5,10 +5,6 @@ import tensorflow as tf
 def write_model_txt(model, path):
 
     f = open(path+"/model_description.txt",'w')
-    tf.summary.create_file_writer
-
-
-
     return True
 
 

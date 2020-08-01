@@ -5,11 +5,11 @@ import tensorflow as tf
 from variables import *
 from useful_function import *
 import json
-from predict_next_character_model_maker import PNCM
+from predict_next_character_model.predict_next_character_model_maker import PNCM
 from dictionary.character_vocabulary import CharVocabulary
 
 
-def PNC(model, start_string, vocabulary, num_generate):
+def predict_next_character(model, start_string, vocabulary, num_generate):
     input_eval = [vocabulary.char2index(s) for s in start_string]
     input_eval = tf.expand_dims(input_eval, 0)
     text_generated_jamo = []
@@ -46,4 +46,4 @@ if __name__ == "__main__":
     vocabulary = CharVocabulary()
     vocabulary.load_char_vocabulary()
     model = load_model()
-    print(PNC(model, start_string=u"ㅈㅏㅁㅇㅡㄴ ㅇㅏㄴㅇㅗㄱㅗ ", vocabulary=vocabulary, num_generate=1000))
+    print(predict_next_character(model, start_string=u"ㅈㅏㅁㅇㅡㄴ ㅇㅏㄴㅇㅗㄱㅗ ", vocabulary=vocabulary, num_generate=1000))
