@@ -31,7 +31,6 @@ IMAGES_PER_FILE = 1000
 EPOCH = 2000
 
 TRAIN_SPLIT = 0.7
-CHARACTER_DATA_PATH = "E:/Ai_projects_data/atom_data/character_data_HES3"
 BATCH_SIZE = 1
 
 #  겹치는 문자들

@@ -13,6 +13,7 @@ def make_character_image(number_of_font_use_option, font_path, image_save_path, 
     fonts = os.listdir(font_path)
     ttf_fonts = [font for font in fonts if font.endswith(".ttf")]
     if number_of_font_use_option is "max":
+        print("use maximum",len(ttf_fonts))
         number_of_font_use = len(ttf_fonts)
     elif number_of_font_use_option > len(ttf_fonts):
         print("number of font use option {0}, exceed max fonts number {1}".format(number_of_font_use_option, len(ttf_fonts)))
@@ -37,4 +38,4 @@ def make_character_image(number_of_font_use_option, font_path, image_save_path, 
 
 
 if __name__ == "__main__":
-    make_character_image(1000, FONT_DIR_PATH, CHARACTER_IMAGES_DIR_PATH, FONT_SIZE)
+    make_character_image("max", FONT_DIR_PATH, CHARACTER_IMAGES_DIR_PATH, FONT_SIZE)

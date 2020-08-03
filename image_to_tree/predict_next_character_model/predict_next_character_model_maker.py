@@ -76,7 +76,7 @@ def make_learn_model(text_as_int, vocabulary):
     history_dict = history.history
     json.dump(history_dict, open(os.path.join(model_dir, PNCM_HISTORY_JSON_NAME), 'w'))
     model.save(os.path.join(model_dir, PNCM_H5_NAME))
-    json.dump(model.to_json(), open(os.path.join(model_dir,"model.json"), 'w'))
+    json.dump(model.to_json(), open(os.path.join(model_dir, "model.json"), 'w'))
 
     plt.plot(history.history['loss'])
     plt.show()

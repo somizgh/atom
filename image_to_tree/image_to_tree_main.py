@@ -1,12 +1,3 @@
-from skimage import io
-from skimage import filters
-from skimage import color
-import numpy as np
-import skimage
-import cv2
-import matplotlib.pyplot as plt
-#from tensorflow.keras.models import load_model
-import numpy as np
 from square_detection import *
 from square_tree import *
 from anytree import Node
@@ -120,17 +111,19 @@ def image_making_sentence(image, IMG_CODE):
 
 
 def from_image_find_sentence(original_image, image, real_straights):
+    cv2.imshow("extreme", image)
+    cv2.waitKey(0)
     morph_adthresh = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,
                                            3, 12)
     cv2.imshow("find sen morph adthresh", morph_adthresh)
     cv2.waitKey(0)
 
-    no_straight = draw(morph_adthresh, real_straights, "straights", (0, 0, 0), 3,show=False)
-    cv2.imshow("no straight", no_straight)
-    cv2.waitKey(0)
+    #no_straight = draw(morph_adthresh, real_straights, "straights", (0, 0, 0), 3,show=False)
+    #cv2.imshow("no straight", no_straight)
+    #cv2.waitKey(0)
 
     kernel = np.ones((10,3), np.uint8)
-    morph_close = cv2.morphologyEx(no_straight, cv2.MORPH_CLOSE,kernel)
+    morph_close = cv2.morphologyEx(morph_adthresh, cv2.MORPH_CLOSE,kernel)
     cv2.imshow("morph close", morph_close)
     cv2.waitKey(0)
 
@@ -172,15 +165,9 @@ def from_image_find_sentence(original_image, image, real_straights):
                 result.append([x,y,x+w,y+h,w*h])
             else:
                 img = cv2.drawContours(image, [cnt], -1, (b, g, r), 1)
-    plt.show()
-    titles = ['Result']
-    images = [image]
+    cv2.imshow("end", original_image)
+    cv2.waitKey(0)
 
-    for i in range(1):
-        plt.subplot(1, 1, i + 1), plt.title(titles[i]), plt.imshow(images[i])
-        plt.xticks([]), plt.yticks([])
-
-    plt.show()
     return result
 
 
@@ -191,11 +178,11 @@ def webpage_making_imageTree(image):
     original_RGB2 = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     inv_gray_image = cv2.bitwise_not(gray_image)
 
-    kernel = np.ones((2,2), np.uint8)
+    kernel = np.ones((2, 2), np.uint8)
     erosion = cv2.erode(inv_gray_image, kernel)
     dilation = cv2.dilate(inv_gray_image, kernel)
     morph_gradient = dilation - erosion
-    cv2.imshow("morph gradient",morph_gradient)
+    cv2.imshow("morph gradient", morph_gradient)
     cv2.waitKey(0)
 
     ret, extreme = cv2.threshold(morph_gradient, 5, 255, cv2.THRESH_BINARY)
@@ -227,11 +214,11 @@ def webpage_making_imageTree(image):
     points, straights_image_map = find_points(pruned_straights, image_height, image_width)
     pruned_straights = pruning_straights(pruned_straights, straights_image_map, mingap=6)
     points, straights_image_map = find_points(pruned_straights, image_height, image_width)
-    draw(original_RGB, pruned_straights, "straights", (255,0,0),1)
+    #draw(original_RGB, pruned_straights, "straights", (255,0,0),1)
 
     real_straights, sentence = separate_sentence_from_straights(extreme, pruned_straights, width=5)
-    draw(original_RGB2, sentence, "straights", (0,255,0),1,show=False)
-    draw(extreme, real_straights,"straights",(0,0,255),1)
+    #draw(original_RGB2, sentence, "straights", (0,255,0),1,show=False)
+    #draw(extreme, real_straights,"straights",(0,0,255),1)
     sentence = from_image_find_sentence(original_RGB, morph_gradient, real_straights)  # 이미지로부터 문자열 추출
     #t3 = time.time()
     #print("{:<60}".format("separate_sentence_from_straights end "), "time : {:>10}".format(round(t3-t2, 4)))

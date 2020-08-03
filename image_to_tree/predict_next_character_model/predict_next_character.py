@@ -2,7 +2,7 @@ from dictionary.character_vocabulary import CharVocabulary
 from file_preprocess import txtfile2npyfile, del_multiple_newline
 import jamotools
 import tensorflow as tf
-from variables import *
+import variables as VARIABLES
 from useful_function import *
 import json
 from predict_next_character_model.predict_next_character_model_maker import PNCM
@@ -30,13 +30,13 @@ def load_model():
     vocabulary = CharVocabulary()
     vocabulary.load_char_vocabulary()
     model = PNCM(batch_size=1, char_vocabulary=vocabulary)
-    with open(PNCM_HISTORY_JSON_PATH, "r") as hist:
+    with open(VARIABLES.PNCM_LATEST_HISTORY_JSON_PATH, "r") as hist:
         history_dict = json.load(hist)
 
     min_loss = min(history_dict["loss"])
     index = history_dict["loss"].index(min_loss)
 
-    model.load_weights(PNCM_LATEST_MODEL_PATH + "/ckpt_" + str(index + 1))
+    model.load_weights(VARIABLES.PNCM_LATEST_MODEL_PATH + "/ckpt_" + str(index + 1))
     model.build(tf.TensorShape([1, None]))
     model.summary()
     return model

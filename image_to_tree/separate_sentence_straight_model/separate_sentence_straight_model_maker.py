@@ -10,12 +10,24 @@ import math
 import os
 import variables as VARIABLES
 import useful_function as UF
-from detect_character_model_variables import *
-import json
+from separate_sentence_straight_model_variables import *
 
+"""
+model = Sequential()
+model.add(Conv2D(100, (5, 5), padding="same", input_shape=input_image_size))
+model.add(Activation("relu"))
+model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
 
+model.add(Conv2D(50, (5, 5), padding="same"))
+model.add(Activation("relu"))
+model.add(MaxPool2D(pool_size=(2, 2), strides=(2, 2)))
 
-def DCM(input_image_size, output_len):
+model.add(Flatten())
+model.add(Dense(500))
+model.add(Activation("relu"))
+"""
+
+def SSSM(input_image_size,out_put_size):
     model = Sequential()
     model.add(Conv2D(100, (5, 5), padding="same", input_shape=input_image_size))
     model.add(Activation("relu"))
@@ -29,23 +41,22 @@ def DCM(input_image_size, output_len):
     model.add(Dense(500))
     model.add(Activation("relu"))
 
-    model.add(Dense(output_len))
+    model.add(Dense(out_put_size))
     model.add(Activation("softmax"))
     return model
 
 
-def learn_DCM(dataX, dataY):
-    char_vocabulary = CharVocabulary().load_char_vocabulary().convert_detectable_char_vocabulary()
-    output_layer_len = len(char_vocabulary.return_keys())
+def learn_SSSM(dataX, dataY):
     input_image_size = (IMAGE_WIDTH, IMAGE_HEIGHT, 1)
+    output_layer_len = 3
     dataX = dataX/255
     dataX = dataX.reshape((len(dataX), IMAGE_HEIGHT, IMAGE_WIDTH, 1))
     train_dataX, test_dataX, train_dataY, test_dataY = train_test_split(dataX, dataY, test_size=0.3)
 
-    model = DCM(input_image_size, output_layer_len)
+    model = SSSM(input_image_size, output_layer_len)
     model.compile(loss="categorical_crossentropy", optimizer=SGD(lr=0.0001), metrics=["accuracy"])
 
-    model_dir = VARIABLES.DCM_MODEL_PREFIX + "\\" + UF.time_format()
+    model_dir = VARIABLES.SSSM_MODEL_PREFIX + "\\" + UF.time_format()
     UF.create_folder(model_dir)
 
     cb_checkpoint = ModelCheckpoint(filepath=model_dir, monitor='val_loss',
@@ -60,12 +71,12 @@ def learn_DCM(dataX, dataY):
 
     print("Accuracy = {}%, ".format(accuracy * 100))
 
-    #json.dump(hist.history, open(os.path.join(model_dir, VARIABLES.DCM_HISTORY_JSON_NAME), 'w'))
-    #json.dump(model.to_json(), open(os.path.join(model_dir, VARIABLES.DCM_JSON_MODEL_NAME), 'w'))
-    model.save(os.path.join(model_dir, VARIABLES.DCM_H5_NAME))
+    #json.dump(hist.history, open(os.path.join(model_dir, VARIABLES.SSSM_HISTORY_JSON_NAME), 'w'))
+    #json.dump(model.to_json(), open(os.path.join(model_dir, VARIABLES.SSSM_JSON_MODEL_NAME), 'w'))
+    model.save(os.path.join(model_dir, VARIABLES.SSSM_H5_NAME))
     """
     model_json = model.to_json()
-    with open(os.path.join(model_dir, VARIABLES.DCM_JSON_MODEL_NAME), "w") as json_file:
+    with open(os.path.join(model_dir, VARIABLES.SSSM_JSON_MODEL_NAME), "w") as json_file:
         json_file.write(model_json)
     """
     fig, loss_ax = plt.subplots()
@@ -90,7 +101,7 @@ def learn_DCM(dataX, dataY):
     return 0
 
 
-def load_numpy(dir_path, number_of_images_use_option):
+def from_image_save_numpy(dir_path, number_of_images_use_option):
     data_x = [[[]]]
     data_y = [[[]]]
     numpy_files = os.listdir(dir_path)
@@ -113,6 +124,5 @@ def load_numpy(dir_path, number_of_images_use_option):
 
 
 if __name__ == "__main__":
-    input_data_x, input_data_y = load_numpy(CHARACTER_NUMPY_DIR_PATH, "max")
-    learn_DCM(input_data_x, input_data_y)
+    print("a")
 

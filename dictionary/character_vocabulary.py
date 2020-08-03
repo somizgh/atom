@@ -69,7 +69,11 @@ class CharVocabulary:
         for i in range(len(keys)):
             if keys[i] in CHARACTERS_NOT_USED_IN_DCM:
                 del self.char2index_vocab[keys[i]]
-            elif keys[i] in list(CHARACTERS_CANNOT_DISTINGUISH.keys()):
-                self.char2index_vocab[keys[i]] = self.char2index_vocab[CHARACTERS_CANNOT_DISTINGUISH[keys[i]]]
+            elif keys[i] in CHARACTERS_CANNOT_DISTINGUISH:
+                del self.char2index_vocab[keys[i]]
+        keys=list(self.char2index_vocab.keys())
+        for k in enumerate(keys):
+            self.char2index_vocab[k[1]] = k[0]
+        print("success convert to detectable char vocabulary", self.char2index_vocab)
         return self
 
