@@ -2,10 +2,6 @@ from os.path import join
 
 E_DATA_PATH = "E:\\Ai_projects_data\\atom_data"
 
-
-ORIGINAL_IMAGE_DIR_NAME = "original_images"
-ORIGINAL_IMAGE_DIR_PATH = join(E_DATA_PATH, ORIGINAL_IMAGE_DIR_NAME)
-
 # Predict Next Character Model ####################################
 PNCM_DIR_NAME = "PNCM"
 PNCM_PATH = join(E_DATA_PATH, PNCM_DIR_NAME)
@@ -62,6 +58,14 @@ CHAR_VOCABULARY_JSON_PATH = join(CHAR_VOCABULARY_JSON_PREFIX, CHAR_VOCABULARY_JS
 
 WIKI_TEXT_PATH = join(E_DATA_PATH, "ko_wiki_extraction")
 WIKI_NPY_PATH = join(E_DATA_PATH, "ko_wiki_toindex")
+
+# full_images ###########################################
+
+FULL_IMAGES_DIR_NAME = "full_images"
+FULL_IMAGES_PATH_NAME = join(E_DATA_PATH, FULL_IMAGES_DIR_NAME)
+
+FULL_CHROME_DIR_NAME = "chrome_images"
+FULL_CHROME_PATH_NAME = join(FULL_IMAGES_PATH_NAME, FULL_CHROME_DIR_NAME)
 
 
 

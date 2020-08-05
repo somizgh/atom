@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60496760-13e6-4599-9b59-dc80bfe65c88" name="Default Changelist" comment="atom v1">
-      <change afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_maker.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_preprocessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionary/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dictionary/character_vocabulary.py" beforeDir="false" afterPath="$PROJECT_DIR$/dictionary/character_vocabulary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/detect_character_model/character_font_image_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/detect_character_model/character_font_image_maker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character_model_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character_model_maker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character_model_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character_model_variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/image_to_tree_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/image_to_tree_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/predict_next_character_model/predict_next_character.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/predict_next_character_model/predict_next_character.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/predict_next_character_model/predict_next_character_model_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/predict_next_character_model/predict_next_character_model_maker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/seperate_sentence_straight.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/seperate_sentence_straight_model_maker.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/seperate_sentence_straight_model_variables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,19 +18,43 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/image_to_tree/image_to_tree_main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="310" column="21" selection-start-line="310" selection-start-column="21" selection-end-line="310" selection-end-column="69" />
+            <state relative-caret-position="262">
+              <caret line="303" selection-start-line="303" selection-end-line="303" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+              <folding>
+                <element signature="e#1#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py">
+        <entry file="file://$PROJECT_DIR$/useful_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="755">
-              <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state relative-caret-position="152">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
               <folding>
-                <element signature="e#1#10#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/variables.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
+            <state relative-caret-position="-285">
               <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
@@ -102,6 +111,7 @@
       <find>print</find>
       <find>DCM</find>
       <find>sort</find>
+      <find>689</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -115,7 +125,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/learn_sentence/character_vocabulary.py" />
         <option value="$PROJECT_DIR$/learn_sentence/oirgin_test.py" />
         <option value="$PROJECT_DIR$/learn_sentence/file_preprocess.py" />
         <option value="$PROJECT_DIR$/learn_sentence/test.py" />
@@ -164,13 +173,14 @@
         <option value="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_preprocessing.py" />
         <option value="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_maker.py" />
         <option value="$PROJECT_DIR$/image_to_tree/image_to_tree_main.py" />
+        <option value="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" />
         <option value="$PROJECT_DIR$/variables.py" />
         <option value="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1909" />
+    <option name="x" value="-11" />
     <option name="width" value="1940" />
     <option name="height" value="2111" />
   </component>
@@ -227,7 +237,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../useful_tool_project" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -399,14 +409,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1273" y="0" width="1293" height="1407" extended-state="0" />
+    <frame x="-7" y="0" width="1293" height="1407" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.35083532" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35083532" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3275862" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34823528" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30039215" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39890283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -420,12 +430,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2903739" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.35083532" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32784313" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.15666407" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3275862" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.30039215" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39890283" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -575,16 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/useful_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -679,16 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/image_to_tree/detect_character_model/detect_character_model_preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -699,10 +689,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/variables.py">
+    <entry file="file://$PROJECT_DIR$/image_to_tree/image_to_tree_variables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="114">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -716,26 +706,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image_to_tree/image_to_tree_variables.py">
+    <entry file="file://$PROJECT_DIR$/image_to_tree/image_to_tree_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        <state relative-caret-position="262">
+          <caret line="303" selection-start-line="303" selection-end-line="303" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image_to_tree/image_to_tree_main.py">
+    <entry file="file://$PROJECT_DIR$/variables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="310" column="21" selection-start-line="310" selection-start-column="21" selection-end-line="310" selection-end-column="69" />
+        <state relative-caret-position="-285">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="755">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state relative-caret-position="294">
+          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
           <folding>
             <element signature="e#1#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/useful_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
