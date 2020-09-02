@@ -343,7 +343,7 @@ def draw(image, square_list, square_type, color, size,color_fix=False, show=True
 if __name__ == "__main__":
     pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     a = 1
-    source_image = cv2.imread(os.path.join(IMAGE_WITH_TEXT_PATH,"{0:>03}.jpg".format(a)))
+    source_image = cv2.imread(os.path.join(FULL_IMAGES_PATH,"{0:>03}.jpg".format(a)))
 
     tree = webpage_making_imageTree(source_image)
     #tree = image_making_sentence(source_image)

@@ -33,6 +33,10 @@
         
         A_model_maker에서 사용될 변수들을 저장
     
+    * A_model_preprocessing.py
+    
+        A_model의 전처리 과정을 총괄한다.
+    
 2. 위의 파일을 import 시 대문자 약자로 import 하고 variables 파일은 V, maker 파일은 M을 붙인다.
     예시) import predict_next_character_model_variables as PNCMV
     
