@@ -9,6 +9,7 @@ import cv2
 
 
 def ss_images_to_numpy(number_of_image_use_option, image_per_file):
+    ## SS = sentence, straight image = images including sentence and straights
     image_files = os.listdir(SS_IMAGES_DIR_PATH)
     number_of_image_use = number_of_image_use_option
     if number_of_image_use_option is "max":

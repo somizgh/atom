@@ -1,6 +1,7 @@
 from os.path import join
 
-E_DATA_PATH = "E:\\Ai_projects_data\\atom_data"
+E_DATA_PATH = "E:\\Ai_projects_data\\atom_data" # 집 하드디스크 버전
+E_DATA_PATH = "C:\\atom_data"  # 북구청 노트북 버전
 
 # Predict Next Character Model ####################################
 PNCM_DIR_NAME = "PNCM"
@@ -67,6 +68,8 @@ FULL_IMAGES_PATH = join(E_DATA_PATH, FULL_IMAGES_DIR_NAME)
 FULL_CHROME_DIR_NAME = "chrome_images"
 FULL_CHROME_PATH = join(FULL_IMAGES_PATH, FULL_CHROME_DIR_NAME)
 
+FULL_NATURE_DIR_NAME = "nature_images"
+FULL_NATURE_PATH = join(FULL_IMAGES_PATH, FULL_NATURE_DIR_NAME)
 
 
 

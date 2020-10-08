@@ -2,14 +2,33 @@
 
 # atom
 
+## 개요
+    다양한 구조로 이루어진 이미지에서 공간을 파악하는 프로그램을 제작한다.
+
+## 환경
+_시스템 환경_
+
+* cuda 10.2  
+* python 3.6  
+* tensorflow-gpu 2.0
+
+
 ## atom 디렉토리 구조
 ![atom](./atom_map.jpg){: width="50%" height="50%"}
 
 * dictionary
 * image_to_tree
     * learn_character_model
+    
+        자모를 인식하는 모델을 제작
     * predict_next_character_model
+    
+       자모를 인식한 후 다음에 올 자모를 예측하는 모델로 자모 인식 시 정확도 향상을 위해 도움을 준다.
     * separate_sentence_straight_model
+    
+        
+
+---
 
 ##제작 규칙
 ### 일반 파일 제작 규칙
@@ -44,8 +63,3 @@
 1. atom_data라는 루트 아래에 각 파일별로 저장
  
     
-## 환경
-시스템 환경
-cuda 10.2
-python 3.6
-tensor-gpu 2.0
