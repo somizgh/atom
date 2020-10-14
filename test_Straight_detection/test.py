@@ -1,16 +1,11 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-h=255
-w=255
-c=3
-black = np.zeros((h,w,c),np.uint8)
 
-for i in range(h):
-    for j in range(w):
-        r=1
-        g=0.2
-        b=0.6
-        black[i,j] = [r*j,g*j,b*j]
-plt.imshow(black)
-plt.show()
+height = 500
+width = 800
+img = np.zeros((height,width,3),np.uint8)
+cv2.putText(img,"COIVD",(10,300),cv2.FONT_HERSHEY_COMPLEX,8,(255,255,255),30)
+img = cv2.bitwise_not(img)
+cv2.imwrite('covid.jpg',img)
+cv2.imshow("img",img)
+cv2.waitKey(0)

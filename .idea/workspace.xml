@@ -20,17 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60496760-13e6-4599-9b59-dc80bfe65c88" name="Default Changelist" comment="atom v1">
-      <change afterPath="$PROJECT_DIR$/test_Straight_detection/straight_detection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_Straight_detection/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/atom.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/atom.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image_to_tree/detect_word/detect_word.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/separate_sentence_straight_model_variables.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" beforeDir="false" afterPath="$PROJECT_DIR$/image_to_tree/separate_sentence_straight_model/ss_image_maker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/useful_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/useful_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Straight_detection/straight_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Straight_detection/straight_detection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Straight_detection/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Straight_detection/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +71,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dam" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -88,7 +82,7 @@
       <recent name="C:\Users\somiz\Google 드라이브\Ai_projects\atom\learn_sentence" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.straight_detection">
+  <component name="RunManager" selected="Python.ss_image_maker">
     <configuration name="detect_character_model_maker" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="atom" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,9 +190,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.straight_detection" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.ss_image_maker" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.straight_detection" />
         <item itemvalue="Python.image_to_tree_main" />
         <item itemvalue="Python.detect_character_model_maker" />
       </list>
@@ -237,28 +231,29 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1181" y="274" key="FileChooserDialogImpl" timestamp="1602060993187">
+    <state x="-1181" y="274" key="FileChooserDialogImpl" timestamp="1602571211047">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1181" y="274" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602060993187" />
-    <state width="1899" height="346" key="GridCell.Tab.0.bottom" timestamp="1602147535469">
+    <state x="-1181" y="274" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602571211047" />
+    <state width="1899" height="265" key="GridCell.Tab.0.bottom" timestamp="1602571212359">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="346" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602147535469" />
-    <state width="1899" height="346" key="GridCell.Tab.0.center" timestamp="1602147535469">
+    <state width="1899" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602571212359" />
+    <state width="1899" height="265" key="GridCell.Tab.0.center" timestamp="1602571212359">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="346" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602147535469" />
-    <state width="1899" height="346" key="GridCell.Tab.0.left" timestamp="1602147535469">
+    <state width="1899" height="265" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602571212359" />
+    <state width="1899" height="265" key="GridCell.Tab.0.left" timestamp="1602571212359">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="346" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602147535469" />
-    <state width="1899" height="346" key="GridCell.Tab.0.right" timestamp="1602147535469">
+    <state width="1899" height="265" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602571212359" />
+    <state width="1899" height="265" key="GridCell.Tab.0.right" timestamp="1602571212359">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="346" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602147535469" />
+    <state width="1899" height="265" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602571212359" />
     <state width="1899" height="346" key="GridCell.Tab.1.bottom" timestamp="1602147535469">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>

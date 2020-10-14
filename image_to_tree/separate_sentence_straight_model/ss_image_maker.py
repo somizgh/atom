@@ -3,12 +3,32 @@ import cv2
 import numpy as np
 import variables as VARIABLES
 import random
+import copy
 from separate_sentence_straight_model_variables import *
 from useful_function import display_n_m_images
+import matplotlib.pyplot as plt
 """
 A file to create images for model training that separates straights and sentences 
 
 """
+def find_child_outline(con,h,i,outline_list):
+    outline_list.append(con[i])
+    child_idx = h[0][i][2]
+    while child_idx != -1:
+        grand_child_idx = h[0][child_idx][2]
+        while grand_child_idx != -1:
+            print("in")
+            outline_list = find_child_outline(con, h, grand_child_idx, outline_list)
+            grand_child_idx = h[0][grand_child_idx][0]
+        child_idx = h[0][child_idx][0]
+    return outline_list
+
+def find_outline(contour, h1):
+    outline = []
+    for i in range(len(h1[0])):
+        if h1[0][i][3]==-1:
+            outline = find_child_outline(contour,h1,i,outline)
+    return outline
 
 def save_image(image, dir_path, key, imc):
     print(key)
@@ -31,70 +51,75 @@ def make_ss_image(original_image_path, number_of_image_use_option):
 
 
         inv_morph_gradient = cv2.bitwise_not(morph_gradient)
-
-
         morph_adthresh = cv2.adaptiveThreshold(inv_morph_gradient, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 3) # 이걸로 구별하자
+        _, morph_thresh = cv2.threshold(inv_morph_gradient, 127, 255, cv2.THRESH_BINARY_INV)
 
-        display_n_m_images(2, 2, [erosion, dilation, morph_gradient, morph_adthresh],
-                           ["erosion", "dilation", "morph_gradient", "morph adthresh"])
-
-        kernel = np.ones((5, 5), np.uint8)
-        morph_close = cv2.morphologyEx(morph_adthresh, cv2.MORPH_CLOSE, kernel, iterations=1)
-        cv2.imshow("morph close 잡음 제거", morph_close)
+        cv2.imshow("morph thresh", morph_thresh)
         cv2.waitKey(0)
 
+        kernel = np.ones((3, 3), np.uint8)
+        morph_close = cv2.morphologyEx(morph_adthresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+        morph_thr_close = cv2.morphologyEx(morph_thresh, cv2.MORPH_CLOSE, kernel, iterations=1)
+        #morph_close = morph_adthresh
 
-
-        show_image = cv2.cvtColor(morph_adthresh, cv2.COLOR_GRAY2RGB)
-
-        hough_lines = cv2.HoughLinesP(morph_close, 0.5, np.pi / 360, 100,minLineLength=1,maxLineGap=10)
-        for line in hough_lines:
-            x1, y1, x2, y2 = line[0]
-            cv2.line(show_image,(x1,y1),(x2,y2),(0,255,0),1)
-
-        cv2.imshow("hough", show_image)
+        display_n_m_images(2, 2, [morph_thr_close, dilation, morph_gradient, morph_adthresh],
+                           ["morph_thr_close", "dilation", "morph_gradient", "morph adthresh"])
+        cv2.imshow("morph close", morph_close)
         cv2.waitKey(0)
 
         approx_on = False
         convex_on = False
         rectangle_on = False
         iamge, contours, hierachy = cv2.findContours(morph_close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        show_image_c = cv2.cvtColor(morph_close, cv2.COLOR_GRAY2RGB)
+        _, contours2, hierachy2 = cv2.findContours(morph_close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        outline = find_outline(contours,hierachy)
+
+        print("len",len(outline))
+
+        contours = outline
+
+        show_image = copy.deepcopy(image)
         result = []
+        AREACUT = False
         for i in range(len(contours)):
             # 각 Contour Line을 구분하기 위해서 Color Random생성
-            b = random.randrange(1, 255)
-            g = random.randrange(1, 255)
-            r = random.randrange(1, 255)
+            b = 0
+            g = 0
+            r = 255
             cnt = contours[i]
             area = cv2.contourArea(cnt)
-            if area > 30:
-                if approx_on:
-                    epsilon = 0.005 * cv2.arcLength(cnt, True)
-                    approx = cv2.approxPolyDP(cnt, epsilon, True)
-                    img = cv2.drawContours(image, [approx], -1, (b, g, r), 2)
-                elif convex_on:
-                    hull = cv2.convexHull(cnt)
-                    img = cv2.drawContours(image, [hull], -1, (b, g, r), 2)
-                elif rectangle_on:
-                    x, y, w, h = cv2.boundingRect(cnt)
-                    """
-                    copy1 = no_straight.copy()
-                    copy2 = copy1[y:y + h, x:x + w]
-                    cv2.imshow(copy2)
-                    TF = input()
-                    cv2.waitKey(0)
-                    if TF is not (1 and 0):
-                        print("errrrrr")
-                    cv2.imwrite("./image_to_sen_out/" + IMG_CODE + "L" + TF + ".jpg", copy2)
-                    """
-                    cv2.rectangle(show_image, (x, y), (x + w, y + h), (b, g, r), 2)
-                    result.append([x, y, x + w, y + h, w * h])
-                else:
-                    img = cv2.drawContours(image, [cnt], -1, (b, g, r), 1)
 
-        cv2.imshow("end", img)
-        cv2.waitKey(0)
+            if AREACUT is True:
+                if area > 30:
+                    if approx_on:
+                        epsilon = 0.005 * cv2.arcLength(cnt, True)
+                        approx = cv2.approxPolyDP(cnt, epsilon, True)
+                        img = cv2.drawContours(image, [approx], -1, (b, g, r), 2)
+                    elif convex_on:
+                        hull = cv2.convexHull(cnt)
+                        img = cv2.drawContours(image, [hull], -1, (b, g, r), 2)
+                    elif rectangle_on:
+                        x, y, w, h = cv2.boundingRect(cnt)
+                        """
+                        copy1 = no_straight.copy()
+                        copy2 = copy1[y:y + h, x:x + w]
+                        cv2.imshow(copy2)
+                        TF = input()
+                        cv2.waitKey(0)
+                        if TF is not (1 and 0):
+                            print("errrrrr")
+                        cv2.imwrite("./image_to_sen_out/" + IMG_CODE + "L" + TF + ".jpg", copy2)
+                        """
+                        cv2.rectangle(image, (x, y), (x + w, y + h), (b, g, r), 2)
+                        result.append([x, y, x + w, y + h, w * h])
+                    else:
+                        show_image = cv2.drawContours(image, [cnt], 1, (b, g, r), 1)
+            else:
+                show_image = cv2.drawContours(image, [cnt], 0, (b, g, r), 1)
+        pltrgb = cv2.cvtColor(show_image,cv2.COLOR_BGR2RGB)
+        plt.imshow(pltrgb)
+        plt.show()
+        """
         result = sorted(result, key=lambda a: -a[4])
         print(result)
         high_density = []
@@ -125,7 +150,7 @@ def make_ss_image(original_image_path, number_of_image_use_option):
             save_image(ims, new_dir_path, key_input, image_counter)
             image_counter += 1
         #draw(show_image_c, high_density,"squares",(255,0,0),1)
-
+    """
     return 0
 
 
